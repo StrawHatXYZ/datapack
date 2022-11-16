@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { openOnboarding } from './utils/extension';
 import React from 'react';
+import Unlocked from './Unlocked';
 
 export function Router() {
   console.log('Router');
@@ -25,7 +26,11 @@ function _Router() {
   //
   // Popup view: main application.
   //
-  return <div></div>;
+  return (
+    <div className="h-screen min-h-[600px] min-w-[375px]">
+      <Unlocked />
+    </div>
+  );
 }
 
 export function WithSuspense(props: any) {
