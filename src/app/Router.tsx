@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { openOnboarding } from './utils/extension';
 import React from 'react';
 import Unlocked from './Unlocked';
+import '../style.css';
 
 export function Router() {
   console.log('Router');
@@ -27,7 +28,7 @@ function _Router() {
   // Popup view: main application.
   //
   return (
-    <div className="h-screen min-h-[600px] min-w-[375px]">
+    <div className="h-screen min-h-[600px] scrollbar-hide  min-w-[375px] ">
       <Unlocked />
     </div>
   );

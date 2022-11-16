@@ -54,6 +54,7 @@ const BottomNavBar = (props) => {
         ) : (
           <AiOutlineAppstore
             size="27"
+            className=" cursor-pointer"
             color="#bbb"
             onClick={() => setActiveTabs('home')}
           />
@@ -62,12 +63,14 @@ const BottomNavBar = (props) => {
       <div className="bn-tab">
         {activeTabs === 'search' ? (
           <IoAnalytics
+            className=" cursor-pointer"
             size="27"
             color="#fff"
             onClick={() => setActiveTabs('search')}
           />
         ) : (
           <IoAnalytics
+            className=" cursor-pointer"
             size="27"
             color="#bbb"
             onClick={() => setActiveTabs('search')}
@@ -77,12 +80,14 @@ const BottomNavBar = (props) => {
       <div className="bn-tab">
         {activeTabs === 'favourites' ? (
           <AiFillDatabase
+            className=" cursor-pointer"
             size="27"
             color="#fff"
             onClick={() => setActiveTabs('favourites')}
           />
         ) : (
           <AiOutlineDatabase
+            className=" cursor-pointer"
             size="27"
             color="#bbb"
             onClick={() => setActiveTabs('favourites')}
@@ -92,12 +97,14 @@ const BottomNavBar = (props) => {
       <div className="bn-tab">
         {activeTabs === 'account' ? (
           <RiUser5Line
+            className=" cursor-pointer"
             size="27"
             color="#fff"
             onClick={() => setActiveTabs('account')}
           />
         ) : (
           <RiUser5Line
+            className=" cursor-pointer"
             size="27"
             color="#bbb"
             onClick={() => setActiveTabs('account')}
