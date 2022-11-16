@@ -10,7 +10,6 @@ export function Router() {
     </WithSuspense>
   );
 }
-
 function _Router() {
   //
   // Expanded view: first time onboarding flow.
@@ -26,11 +25,7 @@ function _Router() {
   //
   // Popup view: main application.
   //
-  return (
-    <div className="w-[280px] h-[450px]">
-      <h1>Hello World</h1>
-    </div>
-  );
+  return <div></div>;
 }
 
 export function WithSuspense(props: any) {
