@@ -1,3 +1,4 @@
+
 import { Suspense } from 'react';
 import { openOnboarding } from './utils/extension';
 import React from 'react';
@@ -17,7 +18,6 @@ function _Router() {
   // Expanded view: first time onboarding flow.
   //
   const needsOnboarding = false;
-
   if (needsOnboarding) {
     openOnboarding();
 
