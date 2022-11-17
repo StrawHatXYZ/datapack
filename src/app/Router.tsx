@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { openOnboarding } from "./utils/extension";
 import React from "react";
+import { LocalStorageDb } from "../backend/db";
 
 export function Router() {
   console.log("Router");
@@ -16,9 +17,10 @@ export function Router() {
     //
     // Expanded view: first time onboarding flow.
     //
-      const needsOnboarding = true;
-      
-     
+      const needsOnboarding = async () => {
+       await LocalStorageDb.get("onboarding");
+      };
+      console.log(needsOnboarding);
   
     if (needsOnboarding) {
       openOnboarding();
