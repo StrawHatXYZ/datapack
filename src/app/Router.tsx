@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 import { openOnboarding } from './utils/extension';
 import React from 'react';
+import Unlocked from './Unlocked';
+import '../style.css';
 
 export function Router() {
   console.log('Router');
@@ -10,7 +12,6 @@ export function Router() {
     </WithSuspense>
   );
 }
-
 function _Router() {
   //
   // Expanded view: first time onboarding flow.
@@ -27,8 +28,8 @@ function _Router() {
   // Popup view: main application.
   //
   return (
-    <div className="w-[280px] h-[450px]">
-      <h1>Hello World</h1>
+    <div className="h-screen min-h-[600px] scrollbar-hide  min-w-[375px] ">
+      <Unlocked />
     </div>
   );
 }
