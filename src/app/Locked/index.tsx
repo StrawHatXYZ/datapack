@@ -25,7 +25,7 @@ export default function Locked() {
             />
           </svg>
         </div>
-        <div className="font-semibold text-2xl text-center">Datapack</div>
+        <div className="text-3xl font-bold text-center">Datapack</div>
       </div>
       <div className="space-y-4 justify-self-end">
         <div className=" relative border m-2 bg-gray-700 border-gray-600 rounded-lg">
