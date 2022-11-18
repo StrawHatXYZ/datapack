@@ -28,7 +28,7 @@ function _Router() {
   // Popup view: main application.
   //
   return (
-    <div className="h-screen min-h-[600px] scrollbar-hide  min-w-[375px] ">
+    <div className="w-[375px] h-[600px] ">
       <Unlocked />
     </div>
   );
