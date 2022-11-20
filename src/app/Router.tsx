@@ -1,9 +1,9 @@
-
 import { Suspense } from 'react';
 import { openOnboarding } from './utils/extension';
 import React from 'react';
 import Unlocked from './Unlocked';
 import '../style.css';
+import Locked from './Locked';
 
 export function Router() {
   console.log('Router');
@@ -29,7 +29,8 @@ function _Router() {
   //
   return (
     <div className="w-[375px] h-[600px] ">
-      <Unlocked />
+      {/* <Unlocked /> */}
+      <Locked />
     </div>
   );
 }
