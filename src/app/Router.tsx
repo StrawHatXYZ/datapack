@@ -17,7 +17,7 @@ function _Router() {
   //
   // Expanded view: first time onboarding flow.
   //
-  const needsOnboarding = false;
+  const needsOnboarding = true;
   if (needsOnboarding) {
     openOnboarding();
 
@@ -28,7 +28,7 @@ function _Router() {
   // Popup view: main application.
   //
   return (
-    <div className="w-[375px] h-[600px] ">
+    <div className="w-[375px] h-[600px]">
       {/* <Unlocked /> */}
       <Locked />
     </div>
