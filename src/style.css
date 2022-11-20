@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body {
-  background-color: #292d3e;
-  color: #ffffff;
+  background-color: rgb(209 213 219);
+  color: rgb(55 65 81);
 }
 
 .input-group {
