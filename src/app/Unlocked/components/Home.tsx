@@ -4,9 +4,11 @@ import TopNav from '../common/TopNav';
 
 export default function Home() {
   return (
-    <div>
+    <div className=''>
       <TopNav />
-      <div>kjnk</div>
+      <div className="flex pt-20 items-center justify-center">
+       <p className='text-xl'> Home Page </p>
+      </div>
       <BottomNavBar name="home" />
     </div>
   );
