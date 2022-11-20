@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 export class SocialProfiles extends React.Component<{
   nextStep: any;
@@ -6,6 +7,10 @@ export class SocialProfiles extends React.Component<{
   inputChange: any;
   values: any;
 }> {
+  constructor(props) {
+    super(props);
+    this.state = { show: true };
+  }
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -32,7 +37,6 @@ export class SocialProfiles extends React.Component<{
             Remember password to unlock the extension
           </p>
         </div>
-
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold text-gray-700">
             Password
@@ -47,19 +51,30 @@ export class SocialProfiles extends React.Component<{
           />
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <label className="block mb-2 text-sm font-bold text-gray-700">
             Confirm Password
           </label>
           <input
             className="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded border-gray-300 appearance-none focus:outline-none focus:shadow-outline"
             id="confpassword"
-            type="password"
+            type={this.state.show ? 'password' : 'text'}
             placeholder="Enter password again"
             name="confpassword"
             onChange={inputChange('confpassword')}
             defaultValue={values.name}
           />
+          {this.state.show ? (
+            <AiFillEye
+              onClick={() => this.setState({ show: false })}
+              className="absolute right-4 bottom-[50%] translate-y-[115%] h-5 w-5 cursor-pointer text-gray-700"
+            />
+          ) : (
+            <AiFillEyeInvisible
+              onClick={() => this.setState({ show: true })}
+              className="absolute right-4 bottom-[50%] translate-y-[115%] h-5 w-5 cursor-pointer text-gray-700"
+            />
+          )}
         </div>
 
         <br />

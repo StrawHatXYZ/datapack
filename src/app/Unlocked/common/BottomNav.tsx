@@ -41,7 +41,6 @@ const BottomNavBar = (props) => {
           <AiFillAppstore
             className=" cursor-pointer text-gray-700"
             size="27"
-            
             onClick={() => setActiveTabs('home')}
           />
         ) : (
