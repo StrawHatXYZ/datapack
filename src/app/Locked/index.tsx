@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+
 export default function Locked() {
   const [show, setShow] = useState(false);
+
   return (
     <div className="h-full flex flex-col justify-center bg-gray-100">
       <div className="space-y-4">
@@ -25,7 +28,9 @@ export default function Locked() {
             />
           </svg>
         </div>
-        <div className="text-4xl font-bold text-center text-blue-500 pb-14">Datapack</div>
+        <div className="text-4xl font-bold text-center text-blue-500 pb-14">
+          Datapack
+        </div>
       </div>
       <div className="space-y-4 justify-self-end">
         <div className=" relative m-3 border-2 bg-gray-100 border-gray-600 rounded-lg">
@@ -46,7 +51,7 @@ export default function Locked() {
             />
           )}
         </div>
-        <div className="m-3 bg-white  rounded-lg  hover:bg-white/95  ">
+        <div className="m-3  rounded-lg    ">
           <button className="p-3 text-base text-gray-100  font-medium rounded-lg bg-blue-500 hover:bg-blue-600 w-full">
             Unlock
           </button>
