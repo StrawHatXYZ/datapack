@@ -14,6 +14,7 @@ export class SocialProfiles extends React.Component<{
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
+    console.log(this.props.values);
   };
 
   back = (e) => {
@@ -47,7 +48,8 @@ export class SocialProfiles extends React.Component<{
             type="password"
             placeholder="Enter password"
             name="password"
-            defaultValue={values.name}
+            onChange={(e) => inputChange({ password: e.target.value })}
+            defaultValue={values.password}
           />
         </div>
 
@@ -61,8 +63,8 @@ export class SocialProfiles extends React.Component<{
             type={this.state.show ? 'password' : 'text'}
             placeholder="Enter password again"
             name="confpassword"
-            onChange={inputChange('confpassword')}
-            defaultValue={values.name}
+            onChange={(e) => inputChange({ confpassword: e.target.value })}
+            defaultValue={values.confpassword}
           />
           {this.state.show ? (
             <AiFillEye
