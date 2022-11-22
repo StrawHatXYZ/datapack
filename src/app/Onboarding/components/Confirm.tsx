@@ -17,18 +17,7 @@ export class Confirm extends React.Component<{
 
   render() {
     const {
-      values: {
-        name,
-        phone,
-        password,
-        facebook,
-        twitter,
-        github,
-        confpassword,
-        country,
-        city,
-        age,
-      },
+      values: { password, countrycode, confpassword, country, city, age },
     } = this.props;
 
     const style = `

@@ -66,7 +66,10 @@ export function Interests({ nextStep, prevStep, inputChange, values }: any) {
             className="w-full px-3 py-[0.6rem] text-sm leading-tight text-gray-700 border rounded border-gray-300 appearance-none focus:outline-blue-600/95 focus:shadow-outline"
             id="age"
             type="Number"
-            maxLength={2}
+            min="0"
+            onKeyDown={(e) =>
+              ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+            }
             placeholder="Enter your age"
             name="password"
             onChange={(e) => inputChange({ age: e.target.value })}
