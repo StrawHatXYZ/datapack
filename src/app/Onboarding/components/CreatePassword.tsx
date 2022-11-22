@@ -1,6 +1,11 @@
 import React from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
+enum errorType {
+  Length,
+  Match,
+}
+
 export class SocialProfiles extends React.Component<{
   nextStep: any;
   prevStep: any;
@@ -9,7 +14,7 @@ export class SocialProfiles extends React.Component<{
 }> {
   constructor(props) {
     super(props);
-    this.state = { show: true };
+    this.state = { show: true, error: false, errorTyp: errorType };
   }
   continue = (e) => {
     e.preventDefault();
@@ -21,9 +26,19 @@ export class SocialProfiles extends React.Component<{
     e.preventDefault();
     this.props.prevStep();
   };
+  validatePassword = (e) => {
+    if (this.props.values.password.length < 8) {
+      this.setState({ error: true });
+      this.setState({ errorTyp: errorType.Length });
+    } else if (this.props.values.password !== this.props.values.confpassword) {
+      this.setState({ error: true });
+      this.setState({ errorTyp: errorType.Match });
+    } else this.continue(e);
+  };
 
   render() {
     const { values, inputChange } = this.props;
+    const { show, error, errorTyp } = this.state;
 
     return (
       <div className="w-full max-w-lg text-black">
@@ -38,35 +53,25 @@ export class SocialProfiles extends React.Component<{
             Remember password to unlock the extension
           </p>
         </div>
-        <div className="mb-4">
+
+        <div className="mb-4 relative">
           <label className="block mb-2 text-sm font-bold text-gray-700">
             Password
           </label>
           <input
-            className="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded border-gray-300 appearance-none focus:outline-none focus:shadow-outline"
+            className={`w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded border-gray-300 ${
+              error &&
+              errorTyp === errorType.Length &&
+              'border-red-600 focus focus:outline-red-600/90'
+            } focus:outline-blue-600/90 focus:shadow-outline`}
+            type={show ? 'password' : 'text'}
             id="password"
-            type="password"
             placeholder="Enter password"
             name="password"
             onChange={(e) => inputChange({ password: e.target.value })}
             defaultValue={values.password}
           />
-        </div>
-
-        <div className="mb-4 relative">
-          <label className="block mb-2 text-sm font-bold text-gray-700">
-            Confirm Password
-          </label>
-          <input
-            className="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded border-gray-300 appearance-none focus:outline-none focus:shadow-outline"
-            id="confpassword"
-            type={this.state.show ? 'password' : 'text'}
-            placeholder="Enter password again"
-            name="confpassword"
-            onChange={(e) => inputChange({ confpassword: e.target.value })}
-            defaultValue={values.confpassword}
-          />
-          {this.state.show ? (
+          {show ? (
             <AiFillEye
               onClick={() => this.setState({ show: false })}
               className="absolute right-4 bottom-[50%] translate-y-[115%] h-5 w-5 cursor-pointer text-gray-700"
@@ -78,6 +83,34 @@ export class SocialProfiles extends React.Component<{
             />
           )}
         </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-bold text-gray-700">
+            Confirm Password
+          </label>
+          <input
+            className={`  ${
+              error &&
+              errorTyp === errorType.Match &&
+              'border-red-600 focus focus:outline-red-600/90'
+            } w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded border-gray-300 appearance-none focus:outline-blue-600/90 focus:shadow-outline`}
+            id="confpassword"
+            type="password"
+            placeholder="Enter password again"
+            name="confpassword"
+            onChange={(e) => inputChange({ confpassword: e.target.value })}
+            defaultValue={values.confpassword}
+          />
+        </div>
+        {error &&
+          (errorTyp === errorType.Length ? (
+            <div className="text-red-700">
+              Your password must be at least 8 characters
+            </div>
+          ) : (
+            <div className="text-red-700">
+              Your password and confirm password are not same
+            </div>
+          ))}
 
         <br />
 
@@ -93,7 +126,7 @@ export class SocialProfiles extends React.Component<{
           <div className="col-6 text-right">
             <button
               className=" bg-blue-500 hover:bg-blue-700 text-white text-md font-semibold py-2 px-4 rounded"
-              onClick={this.continue}
+              onClick={(e) => this.validatePassword(e)}
             >
               Continue
             </button>

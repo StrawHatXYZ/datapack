@@ -1,48 +1,89 @@
-import React from 'react'
+import React from 'react';
 
-export class Confirm extends React.Component<{nextStep: any, prevStep: any, values: any}> {
-    continue = e => {
-        e.preventDefault();
-        this.props.nextStep();
-    };
+export class Confirm extends React.Component<{
+  nextStep: any;
+  prevStep: any;
+  values: any;
+}> {
+  continue = (e) => {
+    e.preventDefault();
+    this.props.nextStep();
+  };
 
-    back = e => {
-        e.preventDefault();
-        this.props.prevStep();
-    };
+  back = (e) => {
+    e.preventDefault();
+    this.props.prevStep();
+  };
 
-    render() {
-        const {
-            values: { name, email, phone, password, facebook, twitter, github,confpassword }
-        } = this.props;
+  render() {
+    const {
+      values: {
+        name,
+        phone,
+        password,
+        facebook,
+        twitter,
+        github,
+        confpassword,
+        country,
+        city,
+        age,
+      },
+    } = this.props;
 
-        return (
-            <div className="form-container text-black">
-                <h1 className="mb-5">Confirm</h1>
-                <ul className="list-group">
-                    <li className="list-group-item">Name: {name}</li>
-                    <li className="list-group-item">Email: {email}</li>
-                    <li className="list-group-item">Phone Number: {phone}</li>
-                    <li className="list-group-item">Password: {password}</li>
-                    <li className="list-group-item">Password: {confpassword}</li>
-                    <li className="list-group-item">Facebook URL: <a href={facebook}>{facebook}</a></li>
-                    <li className="list-group-item">Twitter URL: <a href={twitter}>{twitter}</a></li>
-                    <li className="list-group-item">Github URL: <a href={github}>{github}</a></li>
-                </ul>
+    const style = `
+        flex space-x-5
+    `;
+    return (
+      <div className="form-container flex flex-col justify-center h-full text-lg text-md text-black">
+        <h1 className="mb-5 text-center text-[23px] font-bold text-blue-600/70">
+          Confirm
+        </h1>
+        <ul className="list-group space-y-2">
+          <li className={style}>Name: {name}</li>
+          <li className={style}>Age: {age}</li>
 
-                <br /><br />
+          <li className={style}>Country: {country}</li>
+          <li className={style}>City: {city}</li>
 
-                <div className="row">
-                    <div className="col-6">
-                        <button className="btn btn-danger" onClick={this.back}>Back</button>
-                    </div>
-                    <div className="col-6 text-right">
-                        <button className="btn btn-primary" onClick={this.continue}>Continue</button>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+          <li className={style}>Phone Number: {phone}</li>
+          <li className={style}>Password: {password}</li>
+          <li className={style}>Confirm Password: {confpassword}</li>
+          <li className={style}>
+            Facebook URL: <a href={facebook}>{facebook}</a>
+          </li>
+          <li className={style}>
+            Twitter URL: <a href={twitter}>{twitter}</a>
+          </li>
+          <li className={style}>
+            Github URL: <a href={github}>{github}</a>
+          </li>
+        </ul>
+
+        <br />
+        <br />
+
+        <div className="flex flex-row justify-between ">
+          <div className="">
+            <button
+              className=" bg-blue-500 hover:bg-blue-700 text-white text-md font-semibold py-2 px-4 rounded"
+              onClick={this.back}
+            >
+              Back
+            </button>
+          </div>
+          <div className="col-6 text-right">
+            <button
+              className=" bg-blue-500 hover:bg-blue-700 text-white text-md font-semibold py-2 px-4 rounded"
+              onClick={this.continue}
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Confirm
+export default Confirm;
