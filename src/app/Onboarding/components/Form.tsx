@@ -1,84 +1,88 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { GetStarted } from './GetStarted';
 import SocialProfiles from './CreatePassword';
 import Confirm from './Confirm';
 import Success from './Success';
 import { Interests } from './Interests';
 
-export class Form extends Component {
-    state = {
-        step: 1,
-        name: '',
-        email: '',
-        phone: '',
-        password: '',
-        facebook: '',
-        twitter: '',
-        github: '',
-        confpassword: ''
-    };
+type FormData = {
+  step: number;
+  name: string;
+  email: string;
+  phone: string;
+  gender: string;
+  age: string;
+  country: string;
+  countrycode: string;
+  city: string;
+  password: string;
+  facebook: string;
+  twitter: string;
+  github: string;
+  confpassword: string;
+};
 
-    nextStep = () => {
-        const { step } = this.state;
-        this.setState({ step: step + 1 });
-    };
+export function Form() {
+  const [state, setState] = useState<FormData>({
+    step: 1,
+    name: '',
+    email: '',
+    phone: '',
+    gender: '',
+    countrycode: '',
+    age: '',
+    country: '',
+    city: '',
+    password: '',
+    facebook: '',
+    twitter: '',
+    github: '',
+    confpassword: '',
+  });
 
-    prevStep = () => {
-        const { step } = this.state;
-        this.setState({ step: step - 1 });
-    };
+  const nextStep = () => {
+    setState((e) => {
+      return { ...e, step: e.step + 1 };
+    });
+  };
+  const prevStep = () => {
+    setState((e) => {
+      return { ...e, step: e.step - 1 };
+    });
+  };
 
-    inputChange = input => e => {
-        this.setState({
-            [input]: e.target.value
-        });
-        console.log(this.state);
-    };
+  const inputChange = (input: Partial<FormData>) => {
+    setState((e) => {
+      return { ...e, ...input };
+    });
+  };
 
-    render() {
-        const { step } = this.state;
-        const { name, email, phone, password, facebook, twitter, github,confpassword } = this.state;
-        const values = { name, email, phone, password, facebook, twitter, github,confpassword };
-
-        switch (step) {
-            case 1:
-                return (
-                    <GetStarted
-                        nextStep={this.nextStep}
-                    />
-                );
-            case 2:
-                return (
-                    <Interests
-                        nextStep={this.nextStep}
-                        prevStep={this.prevStep}
-                        inputChange={this.inputChange}
-                        values={values}
-                    />
-                );
-            case 3:
-                return (
-                    <SocialProfiles
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    inputChange={this.inputChange}
-                    values={values}
-                />
-                );  
-            case 4:
-                return (
-                    <Confirm
-                        nextStep={this.nextStep}
-                        prevStep={this.prevStep}
-                        values={values}
-                    />
-                );
-            case 5:
-                return (
-                    <Success />
-                );
-        }
-    }
+  switch (state.step) {
+    case 1:
+      return <GetStarted nextStep={nextStep} />;
+    case 2:
+      return (
+        <Interests
+          nextStep={nextStep}
+          prevStep={prevStep}
+          inputChange={inputChange}
+          values={state}
+        />
+      );
+    case 3:
+      return (
+        <SocialProfiles
+          nextStep={nextStep}
+          prevStep={prevStep}
+          inputChange={inputChange}
+          values={state}
+        />
+      );
+    case 4:
+      return <Confirm nextStep={nextStep} prevStep={prevStep} values={state} />;
+    case 5:
+      return <Success />;
+  }
 }
 
-export default Form
+export default Form;
