@@ -33,10 +33,8 @@ export class GetStarted extends React.Component<{ nextStep: any }> {
             />
           </svg>
         </div>
-        <p className="text-lg text-start">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum sint
-          officia reprehe nderit. Consectetur iusto pariatur debitis ut?
-          Suscipit impedit voluptatum.
+        <p className="text-lg text-justify">
+          Get <b>NFT</b> and <b>DAO</b> recommendations based on your interests. Your data is stored in your browser and not shared with anyone.
         </p>
 
         <br />

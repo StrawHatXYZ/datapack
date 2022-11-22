@@ -29,24 +29,14 @@ export class Confirm extends React.Component<{
           Confirm
         </h1>
         <ul className="list-group space-y-2">
-          <li className={style}>Name: {name}</li>
           <li className={style}>Age: {age}</li>
 
           <li className={style}>Country: {country}</li>
           <li className={style}>City: {city}</li>
 
-          <li className={style}>Phone Number: {phone}</li>
           <li className={style}>Password: {password}</li>
           <li className={style}>Confirm Password: {confpassword}</li>
-          <li className={style}>
-            Facebook URL: <a href={facebook}>{facebook}</a>
-          </li>
-          <li className={style}>
-            Twitter URL: <a href={twitter}>{twitter}</a>
-          </li>
-          <li className={style}>
-            Github URL: <a href={github}>{github}</a>
-          </li>
+
         </ul>
 
         <br />

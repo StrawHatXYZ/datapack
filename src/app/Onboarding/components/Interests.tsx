@@ -24,7 +24,6 @@ export function Interests({ nextStep, prevStep, inputChange, values }: any) {
 
   const cont = (e) => {
     e.preventDefault();
-    console.log(values);
     nextStep();
   };
 
@@ -41,19 +40,16 @@ export function Interests({ nextStep, prevStep, inputChange, values }: any) {
     );
     inputChange({ country: e.label });
     inputChange({ countrycode: e.value });
-    console.log(values.city);
   }
 
   return (
     <div className="w-full max-w-lg text-black">
       <h1 className="m-5 text-3xl text-center text-blue-500 font-bold">
-        INPUT
+        Details
       </h1>
       <div className="px-1 py-5">
         <p className="text-[16px] text-start">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum,
-          velit nobis quibusdam nesciunt corporis magnam ratione laudantium
-          iusto mollitia id.
+          Enter your details to get more personalized recommendations
         </p>
       </div>
 
@@ -104,7 +100,9 @@ export function Interests({ nextStep, prevStep, inputChange, values }: any) {
           />
         </div>
 
-        <div className="mb-4 w-full">
+        
+      </div>
+      <div className="mb-4 w-full">
           <label className="block mb-2 text-sm font-bold text-gray-700">
             City
           </label>
@@ -116,7 +114,6 @@ export function Interests({ nextStep, prevStep, inputChange, values }: any) {
             onChange={(e) => inputChange({ city: e.label })}
           />
         </div>
-      </div>
 
       <br />
 

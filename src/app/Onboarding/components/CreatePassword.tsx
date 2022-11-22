@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-
+import { setEncryptedKeyring } from '../../../backend/keyring';
+import { LocalStorageDb } from '../../../backend/db';
 enum errorType {
   Length,
   Match,
@@ -33,7 +34,13 @@ export class SocialProfiles extends React.Component<{
     } else if (this.props.values.password !== this.props.values.confpassword) {
       this.setState({ error: true });
       this.setState({ errorTyp: errorType.Match });
-    } else this.continue(e);
+    } else
+    {
+      this.setState({ error: false });
+      setEncryptedKeyring("encryptedpass",this.props.values.password);
+      LocalStorageDb.set("accountexists",true);
+      this.continue(e);
+    }
   };
 
   render() {
@@ -47,10 +54,10 @@ export class SocialProfiles extends React.Component<{
         </h1>
         <div className="px-1 py-5">
           <p className="text-[16px] text-start">
-            Password must be at least 8 characters.
+            It must be at least 8 characters.
           </p>
           <p className="text-[16px] text-start">
-            Remember password to unlock the extension
+            Remember this to unlock the extension
           </p>
         </div>
 
@@ -108,7 +115,7 @@ export class SocialProfiles extends React.Component<{
             </div>
           ) : (
             <div className="text-red-700">
-              Your password and confirm password are not same
+              Your passwords do not match
             </div>
           ))}
 
