@@ -4,9 +4,9 @@ import React from 'react';
 import Unlocked from './Unlocked';
 import '../style.css';
 import Locked from './Locked';
+import { LocalStorageDb } from '../backend/db';
 
 export function Router() {
-  console.log('Router');
   return (
     <WithSuspense>
       <_Router />
@@ -17,7 +17,11 @@ function _Router() {
   //
   // Expanded view: first time onboarding flow.
   //
-  const needsOnboarding = true;
+  const ae = async function () {
+    const accountexists = await LocalStorageDb.get("accountexists");
+    return accountexists;
+  }
+  const needsOnboarding = ae();
   if (needsOnboarding) {
     openOnboarding();
 

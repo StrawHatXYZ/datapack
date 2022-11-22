@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-
+import { LocalStorageDb } from '../../backend/db';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { BrowserRuntimeExtension } from '../utils/extension';
 
 export default function Locked() {
   const [show, setShow] = useState(false);
@@ -30,6 +31,16 @@ export default function Locked() {
         </div>
         <div className="text-4xl font-bold text-center text-blue-500 pb-14">
           Datapack
+        </div>
+        <div> 
+          <input className='w-full border-2 border-gray-300 p-2 rounded-lg' 
+           type="button" value="Reset"  onClick={
+           async () => {
+              await LocalStorageDb.set('accountexists', false);
+              await LocalStorageDb.set('password', '');
+              BrowserRuntimeExtension.closeActiveTab();
+            }
+          }/>
         </div>
       </div>
       <div className="space-y-4 justify-self-end">
