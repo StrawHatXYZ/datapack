@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { openOnboarding } from './utils/extension';
 import React from 'react';
-import Unlocked from './Unlocked';
+// import Unlocked from './Unlocked';
 import '../style.css';
 import Locked from './Locked';
 import { LocalStorageDb } from '../backend/db';

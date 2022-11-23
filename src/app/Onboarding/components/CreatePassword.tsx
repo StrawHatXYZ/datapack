@@ -2,20 +2,29 @@ import React from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { setEncryptedKeyring } from '../../../backend/keyring';
 import { LocalStorageDb } from '../../../backend/db';
+
 enum errorType {
   Length,
   Match,
+  None,
 }
 
-export class SocialProfiles extends React.Component<{
+interface Myprops {
   nextStep: any;
   prevStep: any;
   inputChange: any;
   values: any;
-}> {
+}
+interface Mystate {
+  show: boolean;
+  error: boolean;
+  errorTyp: errorType;
+}
+
+export class SocialProfiles extends React.Component<Myprops, Mystate> {
   constructor(props) {
     super(props);
-    this.state = { show: true, error: false, errorTyp: errorType };
+    this.state = { show: true, error: false, errorTyp: errorType.None };
   }
   continue = (e) => {
     e.preventDefault();
@@ -34,11 +43,10 @@ export class SocialProfiles extends React.Component<{
     } else if (this.props.values.password !== this.props.values.confpassword) {
       this.setState({ error: true });
       this.setState({ errorTyp: errorType.Match });
-    } else
-    {
+    } else {
       this.setState({ error: false });
-      setEncryptedKeyring("encryptedpass",this.props.values.password);
-      LocalStorageDb.set("accountexists",true);
+      setEncryptedKeyring('encryptedpass', this.props.values.password);
+      LocalStorageDb.set('accountexists', true);
       this.continue(e);
     }
   };
@@ -114,9 +122,7 @@ export class SocialProfiles extends React.Component<{
               Your password must be at least 8 characters
             </div>
           ) : (
-            <div className="text-red-700">
-              Your passwords do not match
-            </div>
+            <div className="text-red-700">Your passwords do not match</div>
           ))}
 
         <br />

@@ -1,10 +1,12 @@
 import React from 'react';
 
-export class Confirm extends React.Component<{
-  nextStep: any;
-  prevStep: any;
+interface myProps {
+  nextStep: () => void;
+  prevStep: () => void;
   values: any;
-}> {
+}
+
+export class Confirm extends React.Component<myProps> {
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -18,7 +20,7 @@ export class Confirm extends React.Component<{
   render() {
     const {
       values: { password, countrycode, confpassword, country, city, age },
-    } = this.props;
+    } = this.props.values;
 
     const style = `
         flex space-x-5
