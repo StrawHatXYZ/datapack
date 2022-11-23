@@ -5,6 +5,7 @@ import { BrowserRuntimeExtension } from '../utils/extension';
 
 export default function Locked() {
   const [show, setShow] = useState(false);
+  const [a, setA] = useState('');
 
   return (
     <div className="h-full flex flex-col justify-center bg-gray-100">
@@ -32,15 +33,20 @@ export default function Locked() {
         <div className="text-4xl font-bold text-center text-blue-500 pb-14">
           Datapack
         </div>
-        <div> 
-          <input className='w-full border-2 border-gray-300 p-2 rounded-lg' 
-           type="button" value="Reset"  onClick={
-           async () => {
+        <div>
+          <button
+            className="w-full border-2 border-gray-300 bg-slate-600 p-2 rounded-lg"
+            onClick={async () => {
+              setA('Hello');
               await LocalStorageDb.set('accountexists', false);
               await LocalStorageDb.set('password', '');
-              BrowserRuntimeExtension.closeActiveTab();
-            }
-          }/>
+
+              // BrowserRuntimeExtension.closeActiveTab();
+              window.close();
+            }}
+          >
+            Reset
+          </button>
         </div>
       </div>
       <div className="space-y-4 justify-self-end">
@@ -48,6 +54,7 @@ export default function Locked() {
           <input
             type={show ? 'text' : 'password'}
             placeholder="Password"
+            value={a}
             className=" block w-full p-2 bg-gray-100 rounded-lg border text-lg placeholder-gray-400 text-gray-800 outline-none"
           />
           {!show ? (

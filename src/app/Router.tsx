@@ -18,11 +18,12 @@ function _Router() {
   // Expanded view: first time onboarding flow.
   //
   const ae = async function () {
-    const accountexists = await LocalStorageDb.get("accountexists");
+    const accountexists = await LocalStorageDb.get('accountexists');
+    console.log(accountexists);
     return accountexists;
-  }
-  const needsOnboarding = ae();
-  if (needsOnboarding) {
+  };
+  const needsOnboarding = ae().then((e) => e);
+  if (!needsOnboarding) {
     openOnboarding();
 
     return <></>;

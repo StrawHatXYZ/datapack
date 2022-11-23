@@ -32,11 +32,12 @@ export class Confirm extends React.Component<{
           <li className={style}>Age: {age}</li>
 
           <li className={style}>Country: {country}</li>
+          <li className={style}>Countrycode: {countrycode}</li>
+
           <li className={style}>City: {city}</li>
 
           <li className={style}>Password: {password}</li>
           <li className={style}>Confirm Password: {confpassword}</li>
-
         </ul>
 
         <br />

@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { GetStarted } from './GetStarted';
 import SocialProfiles from './CreatePassword';
 import Confirm from './Confirm';

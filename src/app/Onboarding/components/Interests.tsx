@@ -9,6 +9,8 @@ export function Interests({ nextStep, prevStep, inputChange, values }: any) {
     }),
   );
 
+  const [error, setError] = useState<boolean>(false);
+
   const options = useMemo(
     () =>
       Country.getAllCountries().map((e) => {
@@ -40,6 +42,14 @@ export function Interests({ nextStep, prevStep, inputChange, values }: any) {
     );
     inputChange({ country: e.label });
     inputChange({ countrycode: e.value });
+  }
+
+  function handleSubmit(e) {
+    if (values.age === '' || values.country === '' || values.gender === '') {
+      setError(true);
+    } else {
+      cont(e);
+    }
   }
 
   return (
@@ -99,22 +109,20 @@ export function Interests({ nextStep, prevStep, inputChange, values }: any) {
             onChange={(e) => handleCountryChange(e)}
           />
         </div>
-
-        
       </div>
       <div className="mb-4 w-full">
-          <label className="block mb-2 text-sm font-bold text-gray-700">
-            City
-          </label>
-          <Select
-            options={cities}
-            defaultValue={values.city && { label: values.city }}
-            placeholder="Select City"
-            isDisabled={cities.length <= 0}
-            onChange={(e) => inputChange({ city: e.label })}
-          />
-        </div>
-
+        <label className="block mb-2 text-sm font-bold text-gray-700">
+          City
+        </label>
+        <Select
+          options={cities}
+          defaultValue={values.city && { label: values.city }}
+          placeholder="Select City"
+          isDisabled={cities.length <= 0}
+          onChange={(e) => inputChange({ city: e.label })}
+        />
+      </div>
+      {error && <div className="text-red-600">All feilds are required</div>}
       <br />
 
       <div className="flex flex-row justify-between ">
@@ -129,7 +137,7 @@ export function Interests({ nextStep, prevStep, inputChange, values }: any) {
         <div className="col-6 text-right">
           <button
             className=" bg-blue-500 hover:bg-blue-700 text-white text-md font-semibold py-2 px-4 rounded"
-            onClick={cont}
+            onClick={(e) => handleSubmit(e)}
           >
             Continue
           </button>

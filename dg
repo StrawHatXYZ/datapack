@@ -1,0 +1,30 @@
+[33m45e2648ca3c6e2248b4eae61f1e9f36c3c81e0cb[m[33m ([m[1;36mHEAD -> [m[1;32mvijay[m[33m, [m[1;31morigin/vijay[m[33m)[m age negative fixed
+[33mdd38939ce1c9bcd138cbe45b8e62d3a03d7946cc[m Added password check
+[33m20239794c296ba8a1c924f7a12593924a1fa9674[m Added
+[33m4d6465b6f73eb0bc253233b7c1fa346db11cbf01[m Show password on onboarding
+[33m512d5cf877acc8fcdfb7214a0072008fe3560755[m .
+[33meb828f9e395070af7f08270b667ad6ebb6e118d2[m Merge pull request #10 from StrawHatXYZ/main
+[33ma2b8f69ed584913246d56de6382ade66be30bd94[m Merge pull request #8 from StrawHatXYZ/sandeep
+[33m1c666af44e4c76b7ebfbb080c31545f5b539026d[m Added Onboarding form & Changed UI Colors for Locked & Unlocked
+[33mdff43d172772dddf9d071e3c7e5295418d77380a[m Merge pull request #7 from StrawHatXYZ/vijay
+[33m48ba1715cbe4ece69a56988e798d45611d077306[m text size
+[33mc638246abfe10dff43973f51833c67bd980ea4c8[m Locked
+[33m04df5da0fb9a303b9989b6e5a369a61f71e66ec0[m Merge pull request #6 from StrawHatXYZ/main
+[33md386f35c62fbd927f8448dae724c17d6923d1999[m Merge pull request #5 from StrawHatXYZ/sandeep
+[33m7842fceadd8723226964e5469b9dff3de87313f8[m Fixed: Height and Width of extension
+[33mdf426f0cdadf24e7753dde7d29f2e67aeee75aea[m Merge pull request #4 from StrawHatXYZ/sandeep
+[33ma766f39e5994a59220117e0794635c0f8bb1e955[m Added Options Page UI & db modules
+[33mdd7f13d4f776d55550baa4069dfde632ab7da3c0[m Added Options Page UI & db modules
+[33m9fda1f3369888d3e327d623ee77833f44979791c[m Merge pull request #3 from StrawHatXYZ/sandeep
+[33md147532598f1a190993c16d4965f72eb5c3349e6[m Merge branch 'main' into sandeep
+[33mbbe53deda981c0fe30efe34e327f861be946e5a8[m Added Options Page UI & db modules
+[33m5148bd280fef39d2c4b77efa1fe74e53f2a24b55[m Merge pull request #2 from StrawHatXYZ/vijay
+[33mb2d1b3bd3f6dd3250d4011c0cacb14433f21b806[m Scroll Bar fixed & rough Top Nav added
+[33m4a31b83974df52b7281cc085b160595e3e29ab4c[m BottomNavAdded
+[33m463184ea8d50883887ed0afcef6bddd955770504[m Merge pull request #1 from StrawHatXYZ/vijay
+[33mcb4fbba4fd4f43252cfc6776378b40bb514d458d[m *
+[33m17b34ae92eadcc29fa687c71a05968a96f238916[m !
+[33m7ebb4df89dbbeee1f27ba465262ee16ca288ea7a[m --jsx flag added in compiler options
+[33me07f215169d8d720d2c65d66bafdda6bf9f3c3bd[m Updated README.md
+[33me259df4fb7bbe0c5833bf89c27dd5dde43e8f787[m Added README.md
+[33mfab8c7e66fca936716f7a43190257b801f833c88[m Basic Structure of Extemsion
