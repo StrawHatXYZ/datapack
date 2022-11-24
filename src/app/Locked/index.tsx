@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
-import { LocalStorageDb } from '../../backend/db';
+
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { checkEncryptedKeyring } from '../../backend/keyring';
 
 // import { BrowserRuntimeExtension } from '../utils/extension';
 
-export default function Locked() {
+export default function Locked({ setLock }) {
   const [show, setShow] = useState(false);
   const [password, setPassword] = useState('');
+  const [error, setError] = useState({ present: false, msg: '' });
 
   async function handleClick() {
     const success = await checkEncryptedKeyring('encryptedpass', password);
     if (success) {
+      setLock(false);
+      setError({ present: false, msg: 'Sucess' });
+    } else {
+      console.log('Failure');
+      setError({ present: true, msg: 'wrong password' });
     }
   }
 
   return (
-    <div className="h-full flex flex-col justify-center bg-gray-100">
+    <div className="h-screen flex flex-col justify-center bg-gray-100">
       <div className="space-y-4">
         <div className="flex flex-row justify-center pb-3">
           <svg
@@ -41,21 +47,8 @@ export default function Locked() {
         <div className="text-4xl font-bold text-center text-blue-500 pb-14">
           Datapack
         </div>
-        <div>
-          <button
-            className="w-full border-2 border-gray-300 bg-slate-600 p-2 rounded-lg"
-            onClick={async () => {
-              await LocalStorageDb.set('accountexists', false);
-              await LocalStorageDb.set('password', '');
-
-              // BrowserRuntimeExtension.closeActiveTab();
-              window.close();
-            }}
-          >
-            Reset
-          </button>
-        </div>
       </div>
+
       <div className="space-y-4 justify-self-end">
         <div className=" relative m-3 border-2 bg-gray-100 border-gray-600 rounded-lg">
           <input
@@ -77,6 +70,10 @@ export default function Locked() {
             />
           )}
         </div>
+        {error.present && (
+          <div className="text-red-800 text-lg pl-5">{error.msg}</div>
+        )}
+
         <div className="m-3  rounded-lg    ">
           <button
             onClick={handleClick}

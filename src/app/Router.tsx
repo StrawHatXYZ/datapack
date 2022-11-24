@@ -1,11 +1,9 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { openOnboarding } from './utils/extension';
 import React from 'react';
-// import Unlocked from './Unlocked';
 import '../style.css';
-import Locked from './Locked';
 import { LocalStorageDb } from '../backend/db';
-import Unlocked from './Unlocked';
+import PopupRouter from './PopupRouter';
 
 export function Router() {
   return (
@@ -14,7 +12,7 @@ export function Router() {
     </WithSuspense>
   );
 }
-function _Router() {
+function _Router(): JSX.Element {
   //
   // Expanded view: first time onboarding flow.
   //
@@ -23,8 +21,15 @@ function _Router() {
     console.log(accountexists);
     return accountexists;
   };
-  const needsOnboarding = ae().then((e) => e);
-  if (!needsOnboarding) {
+
+  const [needsOnboarding, setNeedsOnboarding] = useState(null);
+  useEffect(() => {
+    ae().then((e) => setNeedsOnboarding(e));
+  }, []);
+
+  if (needsOnboarding === null) {
+    return <BlankApp />;
+  } else if (!needsOnboarding) {
     openOnboarding();
 
     return <></>;
@@ -35,7 +40,7 @@ function _Router() {
   //
   return (
     <div className="min-w-[375px] min-h-[600px]">
-      <Unlocked />
+      <PopupRouter />
       {/* <Locked /> */}
     </div>
   );
