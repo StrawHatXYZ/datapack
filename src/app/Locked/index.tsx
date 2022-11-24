@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { LocalStorageDb } from '../../backend/db';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { checkEncryptedKeyring } from '../../backend/keyring';
+
 // import { BrowserRuntimeExtension } from '../utils/extension';
 
 export default function Locked() {
   const [show, setShow] = useState(false);
+  const [password, setPassword] = useState('');
+
+  async function handleClick() {
+    const success = await checkEncryptedKeyring('encryptedpass', password);
+    if (success) {
+    }
+  }
 
   return (
     <div className="h-full flex flex-col justify-center bg-gray-100">
@@ -52,6 +61,8 @@ export default function Locked() {
           <input
             type={show ? 'text' : 'password'}
             placeholder="Password"
+            value={password}
+            onChange={(w) => setPassword(w.target.value)}
             className=" block w-full p-2 bg-gray-100 rounded-lg border text-lg placeholder-gray-400 text-gray-800 outline-none"
           />
           {!show ? (
@@ -67,7 +78,10 @@ export default function Locked() {
           )}
         </div>
         <div className="m-3  rounded-lg    ">
-          <button className="p-3 text-base text-gray-100  font-medium rounded-lg bg-blue-500 hover:bg-blue-600 w-full">
+          <button
+            onClick={handleClick}
+            className="p-3 text-base text-gray-100  font-medium rounded-lg bg-blue-500 hover:bg-blue-600 w-full"
+          >
             Unlock
           </button>
         </div>
