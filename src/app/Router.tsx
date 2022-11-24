@@ -5,6 +5,7 @@ import React from 'react';
 import '../style.css';
 import Locked from './Locked';
 import { LocalStorageDb } from '../backend/db';
+import Unlocked from './Unlocked';
 
 export function Router() {
   return (
@@ -33,9 +34,9 @@ function _Router() {
   // Popup view: main application.
   //
   return (
-    <div className="w-[375px] h-[600px]">
-      {/* <Unlocked /> */}
-      <Locked />
+    <div className="min-w-[375px] min-h-[600px]">
+      <Unlocked />
+      {/* <Locked /> */}
     </div>
   );
 }

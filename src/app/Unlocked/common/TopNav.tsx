@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import { FiSettings } from 'react-icons/fi';
 import React from 'react';
+import { openPopupWindow } from '../../utils/extension';
 export default function TopNav() {
   const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
+
+  async function openinpopup(url:string) {
+    await openPopupWindow(url);
+  }
+    
   return (
-    <div className="bg-gray-100 block p-4 w-full ">
+    <div className="bg-gray-100 block p-4  w-screen ">
           <div className="flex items-center justify-between w-full ">
             {/* <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
               <img
@@ -69,10 +75,10 @@ export default function TopNav() {
                 Random Item
               </a>
               <a
-                href="#"
+                href="#" onClick={openinpopup.bind(this, 'popup.html')}
                 className="px-3 py-3  text-gray-700  pl-4 font-semibold transition-colors duration-300 transform    hover:bg-gray-700 hover:text-gray-100"
               >
-                Experts
+               Open in a Popup
               </a>
             </div>
 
