@@ -63,6 +63,7 @@
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.3",
     "react-select": "^5.6.1",
+    "recoil": "^0.7.6",
     "sugarss": "^4.0.0"
   },
   "browserslist": [

@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
 
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { LocalStorageDb } from '../../backend/db';
 import { checkEncryptedKeyring } from '../../backend/keyring';
+import {
+  keyringStoreState,
+  KeyringStoreStateEnum,
+  lockState,
+  useKeyringStoreState,
+} from '../atoms';
 
 // import { BrowserRuntimeExtension } from '../utils/extension';
 
-export default function Locked({ setLock }) {
+export default function Locked() {
   const [show, setShow] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState({ present: false, msg: '' });
-
+  const setLockState = useSetRecoilState(lockState);
+  console.log(useKeyringStoreState());
   async function handleClick() {
     const success = await checkEncryptedKeyring('encryptedpass', password);
+    // LocalStorageDb.set('account-exit', false);
     if (success) {
-      setLock(false);
+      setLockState(KeyringStoreStateEnum.Unlocked);
+
       setError({ present: false, msg: 'Sucess' });
     } else {
       console.log('Failure');
@@ -34,7 +45,7 @@ export default function Locked({ setLock }) {
             height="80px"
             color="#fff"
             viewBox="0 0 311.7 311.5"
-            enable-background="new 0 0 311.7 311.5"
+            enableBackground="new 0 0 311.7 311.5"
           >
             <defs></defs>
             <path
