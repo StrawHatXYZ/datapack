@@ -1,5 +1,7 @@
 export const STORE_STATUS = 'localstorage-keyring-store-state';
 export const ACCOUNT_EXITS = 'accountexists';
+export const ENCRYPT_PASSWORD = 'encryptedpass';
+
 export type KeyringStoreState =
   | 'locked'
   | 'unlocked'

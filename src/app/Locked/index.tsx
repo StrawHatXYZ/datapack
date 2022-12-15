@@ -4,7 +4,11 @@ import { useSetRecoilState } from 'recoil';
 import { LocalStorageDb } from '../../backend/db';
 import { checkEncryptedKeyring } from '../../backend/keyring';
 import { lockState, useKeyringStoreState } from '../../contentScript';
-import { ACCOUNT_EXITS, KeyringStoreStateEnum } from '../Constants';
+import {
+  ACCOUNT_EXITS,
+  ENCRYPT_PASSWORD,
+  KeyringStoreStateEnum,
+} from '../Constants';
 
 export default function Locked() {
   const [show, setShow] = useState(false);
@@ -13,7 +17,7 @@ export default function Locked() {
   const setLockState = useSetRecoilState(lockState);
   console.log(useKeyringStoreState());
   async function handleClick() {
-    const success = await checkEncryptedKeyring('encryptedpass', password);
+    const success = await checkEncryptedKeyring(ENCRYPT_PASSWORD, password);
     if (success) {
       setLockState(KeyringStoreStateEnum.Unlocked);
 
@@ -24,6 +28,7 @@ export default function Locked() {
     }
   }
 
+  // Testing function for reset.
   const handle = async () => {
     await LocalStorageDb.set(ACCOUNT_EXITS, null);
     window.close();
@@ -90,6 +95,8 @@ export default function Locked() {
             Unlock
           </button>
         </div>
+
+        {/* ------ Button added for testing ------ */}
         <div className="m-3  rounded-lg    ">
           <button
             onClick={handle}

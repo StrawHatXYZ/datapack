@@ -2,7 +2,7 @@ import React from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { setEncryptedKeyring } from '../../../backend/keyring';
 import { LocalStorageDb } from '../../../backend/db';
-import { ACCOUNT_EXITS } from '../../Constants';
+import { ACCOUNT_EXITS, ENCRYPT_PASSWORD } from '../../Constants';
 
 enum errorType {
   Length,
@@ -46,7 +46,7 @@ export class SocialProfiles extends React.Component<Myprops, Mystate> {
       this.setState({ errorTyp: errorType.Match });
     } else {
       this.setState({ error: false });
-      setEncryptedKeyring('encryptedpass', this.props.values.password);
+      setEncryptedKeyring(ENCRYPT_PASSWORD, this.props.values.password);
       LocalStorageDb.set(ACCOUNT_EXITS, true);
       this.continue(e);
     }
