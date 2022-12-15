@@ -2,6 +2,7 @@ import React from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { setEncryptedKeyring } from '../../../backend/keyring';
 import { LocalStorageDb } from '../../../backend/db';
+import { ACCOUNT_EXITS } from '../../Constants';
 
 enum errorType {
   Length,
@@ -46,7 +47,7 @@ export class SocialProfiles extends React.Component<Myprops, Mystate> {
     } else {
       this.setState({ error: false });
       setEncryptedKeyring('encryptedpass', this.props.values.password);
-      LocalStorageDb.set('accountexists', true);
+      LocalStorageDb.set(ACCOUNT_EXITS, true);
       this.continue(e);
     }
   };
@@ -109,7 +110,7 @@ export class SocialProfiles extends React.Component<Myprops, Mystate> {
               'border-red-600 focus focus:outline-red-600/90'
             } w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded border-gray-300 appearance-none focus:outline-blue-600/90 focus:shadow-outline`}
             id="confpassword"
-            type="password"
+            type={show ? 'password' : 'text'}
             placeholder="Enter password again"
             name="confpassword"
             onChange={(e) => inputChange({ confpassword: e.target.value })}

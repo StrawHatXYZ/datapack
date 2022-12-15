@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { LocalStorageDb } from '../../backend/db';
 import { checkEncryptedKeyring } from '../../backend/keyring';
-import {
-  keyringStoreState,
-  KeyringStoreStateEnum,
-  lockState,
-  useKeyringStoreState,
-} from '../atoms';
-
-// import { BrowserRuntimeExtension } from '../utils/extension';
+import { lockState, useKeyringStoreState } from '../../contentScript';
+import { ACCOUNT_EXITS, KeyringStoreStateEnum } from '../Constants';
 
 export default function Locked() {
   const [show, setShow] = useState(false);
@@ -21,7 +14,6 @@ export default function Locked() {
   console.log(useKeyringStoreState());
   async function handleClick() {
     const success = await checkEncryptedKeyring('encryptedpass', password);
-    // LocalStorageDb.set('account-exit', false);
     if (success) {
       setLockState(KeyringStoreStateEnum.Unlocked);
 
@@ -31,6 +23,11 @@ export default function Locked() {
       setError({ present: true, msg: 'wrong password' });
     }
   }
+
+  const handle = async () => {
+    await LocalStorageDb.set(ACCOUNT_EXITS, null);
+    window.close();
+  };
 
   return (
     <div className="h-screen flex flex-col justify-center bg-gray-100">
@@ -91,6 +88,14 @@ export default function Locked() {
             className="p-3 text-base text-gray-100  font-medium rounded-lg bg-blue-500 hover:bg-blue-600 w-full"
           >
             Unlock
+          </button>
+        </div>
+        <div className="m-3  rounded-lg    ">
+          <button
+            onClick={handle}
+            className="p-3 text-base text-gray-100  font-medium rounded-lg bg-blue-500 hover:bg-blue-600 w-full"
+          >
+            Reset
           </button>
         </div>
       </div>

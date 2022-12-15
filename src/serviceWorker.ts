@@ -1,4 +1,4 @@
-import { ACCOUNT_EXITS, KeyringStoreStateEnum } from './app/atoms';
+import { ACCOUNT_EXITS, KeyringStoreStateEnum } from './app/Constants';
 import { BrowserRuntimeCommon } from './app/utils/common';
 import { LocalStorageDb } from './backend/db';
 
@@ -21,19 +21,20 @@ BrowserRuntimeCommon.addEventListenerFromAnywhere(
   (message: any, _sender: any, sendResponse: any) => {
     if (message.channel === ACCOUNT_EXITS) {
       console.log('Lisenting');
-      // sendResponse({ result: KeyringStoreStateEnum.NeedsOnboarding });
-      // LocalStorageDb.get(message.channel)
-      //   .then((e) => {
-      //     console.log(`Sending ${e} `);
-      //     e === null
-      //       ? sendResponse({ result: KeyringStoreStateEnum.NeedsOnboarding })
-      //       : sendResponse({ result: KeyringStoreStateEnum.Locked });
-      //   })
-      //   .catch((e) => {
-      //     console.log('ErrorBackground');
-      //     sendResponse({ result: 'Error' });
-      //   });
-      sendResponse({ result: KeyringStoreStateEnum.Locked });
+
+      LocalStorageDb.get(message.channel)
+        .then((e) => {
+          e === null
+            ? sendResponse({ result: KeyringStoreStateEnum.NeedsOnboarding })
+            : sendResponse({ result: KeyringStoreStateEnum.Unlocked });
+          console.log(`Sending ${e} `);
+        })
+        .catch(() => {
+          console.log('ErrorBackground');
+          sendResponse({ result: 'Error' });
+        });
+
+      return true;
     }
   },
 );
