@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { LocalStorageDb } from '../../backend/db';
 import { checkEncryptedKeyring } from '../../backend/keyring';
+import { lockState, useKeyringStoreState } from '../../contentScript';
 import {
-  keyringStoreState,
+  ACCOUNT_EXITS,
+  ENCRYPT_PASSWORD,
   KeyringStoreStateEnum,
-  lockState,
-  useKeyringStoreState,
-} from '../atoms';
-
-// import { BrowserRuntimeExtension } from '../utils/extension';
+} from '../Constants';
 
 export default function Locked() {
   const [show, setShow] = useState(false);
@@ -20,8 +17,7 @@ export default function Locked() {
   const setLockState = useSetRecoilState(lockState);
   console.log(useKeyringStoreState());
   async function handleClick() {
-    const success = await checkEncryptedKeyring('encryptedpass', password);
-    // LocalStorageDb.set('account-exit', false);
+    const success = await checkEncryptedKeyring(ENCRYPT_PASSWORD, password);
     if (success) {
       setLockState(KeyringStoreStateEnum.Unlocked);
 
@@ -31,6 +27,12 @@ export default function Locked() {
       setError({ present: true, msg: 'wrong password' });
     }
   }
+
+  // Testing function for reset.
+  const handle = async () => {
+    await LocalStorageDb.set(ACCOUNT_EXITS, null);
+    window.close();
+  };
 
   return (
     <div className="h-screen flex flex-col justify-center bg-gray-100">
@@ -91,6 +93,16 @@ export default function Locked() {
             className="p-3 text-base text-gray-100  font-medium rounded-lg bg-blue-500 hover:bg-blue-600 w-full"
           >
             Unlock
+          </button>
+        </div>
+
+        {/* ------ Button added for testing ------ */}
+        <div className="m-3  rounded-lg    ">
+          <button
+            onClick={handle}
+            className="p-3 text-base text-gray-100  font-medium rounded-lg bg-blue-500 hover:bg-blue-600 w-full"
+          >
+            Reset
           </button>
         </div>
       </div>

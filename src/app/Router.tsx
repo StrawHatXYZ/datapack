@@ -1,15 +1,10 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import { openOnboarding } from './utils/extension';
 import React from 'react';
 import '../style.css';
-import { LocalStorageDb } from '../backend/db';
 import PopupRouter from './PopupRouter';
-import {
-  keyringStoreState,
-  KeyringStoreStateEnum,
-  useKeyringStoreState,
-} from './atoms';
-import { useRecoilValue } from 'recoil';
+import { useKeyringStoreState } from '../contentScript';
+import { KeyringStoreStateEnum } from './Constants';
 
 export function Router() {
   return (
@@ -19,24 +14,6 @@ export function Router() {
   );
 }
 function _Router(): JSX.Element {
-  const need = useRecoilValue(keyringStoreState);
-  //
-  // Expanded view: first time onboarding flow.
-  //
-  // const ae = async function () {
-  //   const accountexists = await LocalStorageDb.get('accountexists');
-  //   console.log(accountexists);
-  //   return accountexists;
-  // };
-
-  // const [needsOnboardings, setNeedsOnboarding] = useState(null);
-  // useEffect(() => {
-  //   ae().then((e) => setNeedsOnboarding(e));
-  // }, []);
-  console.log('Needs On boarding');
-
-  console.log(need);
-
   const needsOnboarding =
     useKeyringStoreState() === KeyringStoreStateEnum.NeedsOnboarding;
 
@@ -44,8 +21,6 @@ function _Router(): JSX.Element {
     console.log('Needs On boarding');
     openOnboarding();
   }
-
-  // return <></>;
 
   //
   // Popup view: main application.
@@ -55,7 +30,6 @@ function _Router(): JSX.Element {
     return (
       <div className="min-w-[375px] min-h-[600px]">
         <PopupRouter />
-        {/* <Locked /> */}
       </div>
     );
   }
